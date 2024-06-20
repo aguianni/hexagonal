@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "store")
 public class StoreDAO {
 
     public StoreDAO(Store store) {
@@ -33,10 +34,11 @@ public class StoreDAO {
     String nif;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="store_products")
     List<ProductDAO> products;
 
     public Store convert(){
-        List<Product> products = this.getProducts().stream().map(p -> new Product(p.getId(), p.getName(), p.getColor(), p.getSize())).collect(Collectors.toList());
+        List<Product> products = this.getProducts().stream().map(p -> p.convert()).collect(Collectors.toList());
         return new Store(this.getId(), this.getAddress(), this.getNif(), products);
     }
 }

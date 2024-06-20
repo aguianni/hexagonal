@@ -4,6 +4,7 @@ import com.example.hexagonal.domain.model.Store;
 import com.example.hexagonal.domain.port.out.StoreRepositoryPort;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @Qualifier("map")
 public class HashMapStoreRepository implements StoreRepositoryPort {
 
-    private Long idGen = 0L;
+    private Long idGen = 1L;
 
     private Map<Long, Store> map = new HashMap<>();
 
