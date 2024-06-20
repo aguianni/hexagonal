@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @Qualifier("h2")
-@Primary
+
 public class H2StoreRepository implements StoreRepositoryPort {
 
     H2StoreJPARepository h2Repo;

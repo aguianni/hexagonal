@@ -14,9 +14,11 @@ import java.util.stream.Collectors;
 
 @Repository
 @Qualifier("map")
+@Primary
 public class HashMapStoreRepository implements StoreRepositoryPort {
 
     private Long idGen = 1L;
+    private Long idGenProd = 1L;
 
     private Map<Long, Store> map = new HashMap<>();
 
@@ -27,6 +29,10 @@ public class HashMapStoreRepository implements StoreRepositoryPort {
             store.setId(idGen);
             idGen++;
         }
+        store.getProducts().stream().forEach(p -> {
+            p.setId(idGenProd);
+            idGenProd++;
+        });
         map.put(store.getId(), store);
         return store;
     }
